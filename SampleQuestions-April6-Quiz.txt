@@ -1,0 +1,24 @@
+
+This Quiz will ask you to extract information from the data set “quakes.csv”, 
+and then display your results in a table or a graph, as specified in the question.
+You should (as in the previous quiz), provide a link to the cloud provider application,
+so that we can see your results. 
+The cloud provider should be MicroSoft Azure, but if we have already given you permission
+you may use IBM Cloud or AWS. For rather apparent reasons “local” implementations will not be 
+viewable.
+The data may be placed in some data store mechanism on the cloud provider
+(a database, hash, array, or similar)
+Examples of questions:
++ For Latitudes between +10 and +50, in increments (groups) of 10 degrees, 
+   that is: 10 to 20, 20 to 30, 30 to 40, and 40 to 50, count the number of quakes in the data set and
+   for each interval give the number of total quakes for that interval.
++ We will supply a “net” value (see data) such as “us” and you will give number of quakes in a range,
+   similar to previous.
++ For the previous questions show, on a web form screen, a graph that occupies between 70 to 90
+   percent of the screen for:
+   - a vertical bar chart, with captions (legends) inside each bar
+   - a pie chart, with captions outside each pie “slice”
++ For the net value “ci” where “nst” is the X axis and “gap” is the “y” axis, show a “point” or “scatter”
+   chart, please label the x and y axis, and show a “scale” on each axis.
+
+

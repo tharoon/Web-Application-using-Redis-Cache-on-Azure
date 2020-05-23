@@ -1,0 +1,102 @@
+1. You are on your honor. You may use on-line resources, NOT other people. Thank You.
+
+2. On MicroSoft Azure:
+
+   On every web page, on Azure, show your name (first name space, then last name)
+
+   at the top, below that your student ID.
+
+   1. On a web form, allow a user to enter a number between 0 and 999.
+
+      Add the last 2 digits of your ID to that value input and display
+
+      the value input and the result
+
+	@app.route('/quiz1', methods=["POST", "GET"])
+	def quiz1():
+    	range1 = int(request.form.get('range', ''))
+    	result = range1 + 1
+    	return render_template('quiz1.html', result=result, range1=range1)
+
+	<h4>
+                 Question 1
+            </h4> <br>
+            <form action="/quiz1" method="post">
+                <h4>Please enter a value</h4>
+                <label>Value: </label> <input type="number" name="range">
+                <input type="submit" value="Show">
+
+            </form>
+
+   2. Put the following data on Azure (as an array, database, or similar)
+
+      Broccoli, veg, 5
+
+      Cabbage, veg, 2
+
+      Cheese, notveg, 6
+
+      Bread, notveg, 8
+
+      Coke, veg, 10
+
+      a. On a web form allow user to input “veg” or “nonveg” and you list all items
+
+         in that category.
+		
+		@app.route('/quiz2', methods=["POST", "GET"])
+		def quiz2():
+    		range1 = request.form.get('range', '')
+    		query1 = "select * from vegetables where category = '" +str(range1)+ "'"
+    		cursor.execute(query1)
+    		r1 = cursor.fetchall()
+    		return render_template('quiz2.html', r1=r1)
+
+		
+
+      b. BONUS: Show a pie chart that occupies between 70 to 90% of the screen width
+
+         for veg and nonveg categories.
+
+	@app.route('/quiz2b', methods=["POST", "GET"])
+	def quiz2b():
+    	query1 = "select count(*) from vegetables where category ='veg'"
+    	cursor.execute(query1)
+    	r1 = cursor.fetchall()
+    	query2 = "select count(*) from vegetables where category ='notveg'"
+    	cursor.execute(query2)
+    	r2 = cursor.fetchall()
+    	rows = ([
+        ['Category', 'Number of count'],
+        ['veg', r1[0][0]],
+        ['notveg', r2[0][0]]
+    	])
+    return render_template('quiz2b.html', rows=rows)
+
+	</div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+
+            var data = google.visualization.arrayToDataTable({{ rows|safe }});
+
+            var options = {
+                title: ' Pie chart showing Number of Veg or Notveg',
+                pieSliceText: 'value',
+                legend: {position: 'labeled'}
+                {#colors: ['yellow','lightgray','orange']#}
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+          }
+        </script>
+
+3. When you are finished with any part, please submit a link (a link to your Azure app)
+
+  to Teams, and we will try to demo it, then When you are FINISHED
+
+   (or at the end of the class) please submit code to Teams, and terminate your app.
